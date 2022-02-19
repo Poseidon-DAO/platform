@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal } from "reactstrap";
+import { useState } from "react";
+import { Button } from "reactstrap";
 import { useMoralis } from "react-moralis";
-import WalletProvidersModal from "./WalletModal/WalletProvidersModal";
+import WalletProvidersModal from "./WalletModal/WalletModal";
 import { ProviderTypes } from "Types";
 
 export default function ConnectWallet() {

@@ -1,4 +1,4 @@
-import { Modal } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import metamaskIcon from "assets/img/walletProviders/metamask.png";
 import walletConnectIcon from "assets/img/walletProviders/walletConnect.png";
 import Provider from "./Provider";
@@ -14,20 +14,17 @@ export default function WalletProvidersModal({
   onClose,
 }: WalletProvidersModalProps) {
   return (
-    <Modal
-      isOpen={isOpen}
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        padding: "1rem",
-      }}
-    >
-      <p onClick={() => onClose()} style={{ fontSize: 10, color: "black" }}>
-        Close Modal
-      </p>
-      <div style={{ display: "flex", width: "100%" }}>
+    <Modal isOpen={isOpen}>
+      <ModalHeader charCode="X" toggle={() => onClose()}>
+        <h4 style={{ color: "black" }}>Connect your wallet</h4>
+      </ModalHeader>
+      <ModalBody
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Provider
           icon={metamaskIcon}
           name={ProviderTypes.metamask}
@@ -38,7 +35,10 @@ export default function WalletProvidersModal({
           name={ProviderTypes.walletConnect}
           onClick={onClose}
         />
-      </div>
+      </ModalBody>
+      <ModalFooter style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button onClick={() => onClose()}>Cancel</Button>
+      </ModalFooter>
     </Modal>
   );
 }

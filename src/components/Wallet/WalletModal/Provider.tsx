@@ -1,25 +1,14 @@
-import React from "react";
 import { ProviderTypes } from "Types";
-
-export default function Provider({
-  icon,
-  name,
-  onClick,
-}: {
+import "./walletModal.css";
+interface ProviderProps {
   icon: string;
   name: ProviderTypes;
-  onClick: (name: ProviderTypes) => void;
-}) {
+  onClick: (provider: ProviderTypes) => void;
+}
+
+export default function Provider({ icon, name, onClick }: ProviderProps) {
   return (
-    <div
-      style={{
-        height: "10rem",
-        width: "10rem",
-        margin: "0 1rem",
-        cursor: "pointer",
-      }}
-      onClick={() => onClick(name)}
-    >
+    <div className="provider" onClick={() => onClick(name)}>
       <img src={icon} alt={name} style={{ objectFit: "cover" }} />
     </div>
   );

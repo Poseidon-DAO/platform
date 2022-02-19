@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { SocialIcon } from "react-social-icons";
 import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import LoopGallery from "components/LoopGallery/LoopGallery";
+import "assets/demo/demo.css";
+import "assets/scss/blk-design-system-react.scss";
+import "assets/css/nucleo-icons.css";
 
 const Landing = () => {
   useEffect(() => {
@@ -120,6 +123,7 @@ const Landing = () => {
               "what-a-dream-looks-like-.jpg",
             ].map((i: string) => (
               <img
+                key={i}
                 alt="..."
                 className="img-fluid floating img-gallery"
                 src={require(`assets/img/collection/${i}`).default}
@@ -144,6 +148,7 @@ const Landing = () => {
               "world-11235.jpg",
             ].map((i: string) => (
               <img
+                key={i}
                 alt="..."
                 className="img-fluid floating img-gallery"
                 src={require(`assets/img/collection/${i}`).default}
@@ -168,6 +173,7 @@ const Landing = () => {
               "ypj-womens-vs-long-beards-nft.jpg",
             ].map((i: string) => (
               <img
+                key={i}
                 alt="..."
                 className="img-fluid floating img-gallery"
                 src={require(`assets/img/collection/${i}`).default}
