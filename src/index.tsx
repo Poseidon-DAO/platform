@@ -1,37 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { MoralisProvider } from "react-moralis";
 
-// import "assets/css/nucleo-icons.css";
-// import "assets/scss/blk-design-system-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
-
 import "assets/scss/blk-design-system-react.scss";
 import "assets/css/nucleo-icons.css";
 
-import LandingPage from "pages/LandingPage";
+import App from "App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        {/* <Route path="/components" render={(props) => <Index {...props} />} /> */}
-        <Route
-          // path="/landing-page"
-          path="/"
-          render={(props: any) => <LandingPage {...props} />}
-        />
-        {/* <Route
-        path="/register-page"
-        render={(props) => <RegisterPage {...props} />}
-      />
-      <Route
-        path="/profile-page"
-        render={(props) => <ProfilePage {...props} />}
-      /> */}
-        <Redirect from="/" to="/components" />
-      </Switch>
-    </BrowserRouter>
+    <MoralisProvider
+      appId={process.env.REACT_APP_MORALIS_ID!}
+      serverUrl={process.env.REACT_APP_MORALIS_URL!}
+    >
+      <App />
+    </MoralisProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

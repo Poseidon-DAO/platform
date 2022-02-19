@@ -1,8 +1,8 @@
+import ConnectWallet from "components/Wallet";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   UncontrolledTooltip,
-  Button,
   Col,
   Collapse,
   Container,
@@ -178,18 +178,10 @@ export default function IndexNavbar() {
               </DropdownMenu>
             </UncontrolledDropdown> */}
             <NavItem>
-              <Button
-                id="connect"
-                className="d-none d-lg-block"
-                type="button"
-                color="default"
-                onClick={() => console.log("Hello hacker")}
-              >
-                CONNECT
-              </Button>
-              <UncontrolledTooltip delay={0} placement="left" target="connect">
+              <ConnectWallet />
+              {/* <UncontrolledTooltip delay={0} placement="left" target="connect">
                 Coming soon
-              </UncontrolledTooltip>
+              </UncontrolledTooltip> */}
             </NavItem>
           </Nav>
         </Collapse>
