@@ -1,4 +1,4 @@
-import { ProviderTypes } from "Types";
+import { ProviderTypes } from "types";
 import "./walletModal.css";
 interface ProviderProps {
   icon: string;

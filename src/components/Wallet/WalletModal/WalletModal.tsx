@@ -2,7 +2,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import metamaskIcon from "assets/img/walletProviders/metamask.png";
 import walletConnectIcon from "assets/img/walletProviders/walletConnect.png";
 import Provider from "./Provider";
-import { ProviderTypes } from "Types";
+import { ProviderTypes } from "types";
 
 interface WalletProvidersModalProps {
   isOpen: boolean;
