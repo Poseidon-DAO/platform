@@ -18,7 +18,7 @@ export default function CustomModal({
   footer,
 }: ICustomModalProps) {
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} fade>
       {header && (
         <ModalHeader charCode="X" toggle={() => onClose()}>
           {header}

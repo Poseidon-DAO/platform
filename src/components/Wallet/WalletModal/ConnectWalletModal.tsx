@@ -7,7 +7,7 @@ import CustomButton from "components/UI_KIT/CustomButton";
 
 interface WalletProvidersModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (provider?: ProviderTypes) => void;
 }
 
 export default function WalletProvidersModal({
@@ -24,19 +24,19 @@ export default function WalletProvidersModal({
           <Provider
             icon={metamaskIcon}
             name={ProviderTypes.metamask}
-            onClick={onClose}
+            onClick={() => onClose(ProviderTypes.metamask)}
           />
           <Provider
             icon={walletConnectIcon}
             name={ProviderTypes.walletConnect}
-            onClick={onClose}
+            onClick={() => onClose(ProviderTypes.walletConnect)}
           />
         </>
       }
       footer={
         <CustomButton
           type={ButtonTypes.danger}
-          onClick={onClose}
+          onClick={() => onClose()}
           text="Cancel"
         />
       }

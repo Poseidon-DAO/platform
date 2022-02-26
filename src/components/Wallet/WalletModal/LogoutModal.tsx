@@ -16,7 +16,7 @@ export default function LogoutModal({
   return (
     <CustomModal
       isOpen={isOpen}
-      header="Are you sure you want to log out?"
+      header="Are you sure you want to disconnect?"
       onClose={onClose}
       footer={
         <div
@@ -24,7 +24,7 @@ export default function LogoutModal({
         >
           <CustomButton
             onClick={onLogout}
-            text="Logout"
+            text="Disconnect"
             type={ButtonTypes.danger}
           />
           <CustomButton

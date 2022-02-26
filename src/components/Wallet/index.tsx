@@ -84,9 +84,12 @@ export default function ConnectWallet() {
   useEffect(() => {
     const getBalances = async () => {
       try {
-        //@ts-ignore
-        const balances = await Moralis.Web3API.account.getNativeBalance();
-        balanceToRedux(balances.balance);
+        const balances = await Moralis.Web3API.account.getNativeBalance({
+          address: userData.accounts[0],
+          //@ts-ignore
+          chain: `${userData.accounts[0].slice(0, 3)}`,
+        });
+        balanceToRedux(Moralis.Units.FromWei(balances.balance));
       } catch (e) {
         balanceToRedux("0");
       }

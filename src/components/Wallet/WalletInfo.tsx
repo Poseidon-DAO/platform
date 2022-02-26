@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { roundBalance } from "utils";
 
 interface WalletInfoProps {
   address: string;
@@ -15,7 +16,7 @@ export default function WalletInfo({
     <Container onClick={onClick}>
       {balance && (
         <LeftContainer>
-          <p>{balance} ETH</p>
+          <p>{roundBalance(balance)} ETH</p>
         </LeftContainer>
       )}
       <RightContainer address={address}>
@@ -35,7 +36,6 @@ const Container = styled.div`
   cursor: pointer;
   border-radius: 0.5rem;
   border: 0.5px solid #4824fa;
-  width: 15rem;
 `;
 
 const LeftContainer = styled.div`
@@ -50,6 +50,5 @@ const LeftContainer = styled.div`
 const RightContainer = styled.div<Pick<WalletInfoProps, "address">>`
   padding: 0.5rem 1rem;
   display: flex;
-  flex: 1;
   justify-content: ${(props) => (props.address ? "center" : "flex-end")};
 `;

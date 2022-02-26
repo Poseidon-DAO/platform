@@ -7,6 +7,7 @@ import { RootState } from "redux/reducers";
 import Actions from "redux/actions";
 import { useCallback } from "react";
 import { ButtonTypes } from "types";
+import { roundBalance } from "utils";
 
 interface UserModalProps {
   isOpen: boolean;
@@ -48,15 +49,15 @@ export default function UserModal({
             Copy Address
           </Badge>
           <header>Balance:</header>
-          <p>{user?.balance} ETH</p>
+          <p>{roundBalance(user?.balance)} ETH</p>
         </div>
         <LogoutContainer>
           <Badge
             onClick={onLogout}
             color={ButtonTypes.danger}
-            style={{ width: "20%", justifySelf: "flex-end", cursor: "pointer" }}
+            style={{ width: "25%", justifySelf: "flex-end", cursor: "pointer" }}
           >
-            Logout
+            Disconnect
           </Badge>
         </LogoutContainer>
       </Content>
