@@ -4,13 +4,13 @@ import createSagaMiddleware from "redux-saga";
 import rootMiddlware from "./middleware";
 import reducers from "./reducers";
 
-// const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   reducers,
-  composeWithDevTools(/*applyMiddleware(sagaMiddleware)*/)
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
-// sagaMiddleware.run(rootMiddlware);
+sagaMiddleware.run(rootMiddlware);
 
 export default store;

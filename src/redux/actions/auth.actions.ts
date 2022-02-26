@@ -1,7 +1,8 @@
 import asyncAction from "./asyncAction";
 
-export const LOGIN = asyncAction("@auth/LOGIN");
-export const LOGOUT = asyncAction("@auth/LOGOUT");
+export const LOGIN = asyncAction("@auth/login");
+export const LOGOUT = "@auth/logout";
+export const GET_BALANCE = "@auth/getBalance";
 
 export const Login = {
   request: (payload: any) => ({ type: LOGIN.REQUEST, payload }),
@@ -9,8 +10,6 @@ export const Login = {
   failed: (payload: any) => ({ type: LOGIN.FAILED, payload }),
 };
 
-export const Logout = {
-  request: (payload: any) => ({ type: LOGOUT.REQUEST, payload }),
-  success: (payload: any) => ({ type: LOGOUT.SUCCESS, payload }),
-  failed: (payload: any) => ({ type: LOGOUT.FAILED, payload }),
-};
+export const Balance = (payload: string) => ({ type: GET_BALANCE, payload });
+
+export const Logout = () => ({ type: LOGOUT });

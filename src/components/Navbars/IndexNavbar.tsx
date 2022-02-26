@@ -64,9 +64,6 @@ export default function IndexNavbar() {
               className={"img-fluid rounded " + logo}
               src={require("assets/img/logo-transparent.png").default}
             />
-
-            {/* <span>BLK• </span>
-            Design System React */}
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
@@ -88,9 +85,6 @@ export default function IndexNavbar() {
           <div className="navbar-collapse-header">
             <Row>
               <Col className="collapse-brand" xs="6">
-                {/* <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  BLK•React
-                </a> */}
                 <img
                   alt="..."
                   className={"img-fluid rounded " + logo}

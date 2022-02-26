@@ -2,7 +2,7 @@ import Actions from "../actions";
 import { IReduxAction } from "types";
 import { ApiReducerState, apiReducerInitialState } from "./reducerUtils";
 
-interface IAuthState extends ApiReducerState {
+export interface IWalletState extends ApiReducerState {
   wallet: any;
 }
 
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const WalletReducer = (
-  state: IAuthState = initialState,
+  state: IWalletState = initialState,
   { type, payload }: IReduxAction
 ) => {
   switch (type) {
@@ -32,7 +32,7 @@ const WalletReducer = (
         ...state,
         wallet: payload.wallet,
       };
-    case Actions.AuthActions.LOGOUT.SUCCESS:
+    case Actions.AuthActions.LOGOUT:
       return {
         ...state,
         wallet: {},

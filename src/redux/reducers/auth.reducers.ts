@@ -1,14 +1,24 @@
 import Actions from "../actions";
 import { ApiReducerState, apiReducerInitialState } from "./reducerUtils";
-import { IReduxAction } from "types";
+import { IReduxAction, IUser } from "types";
 
-interface IAuthState extends ApiReducerState {
-  user: any;
+export interface IAuthState extends ApiReducerState {
+  user: IUser;
 }
 
 const initialState = {
   ...apiReducerInitialState,
-  user: {},
+  user: {
+    username: "",
+    authData: {},
+    createdAt: "",
+    updatedAt: "",
+    accounts: [],
+    ethAddress: "",
+    sessionToken: "",
+    objectId: "",
+    balance: "",
+  },
 };
 
 const AuthReducer = (
@@ -32,10 +42,15 @@ const AuthReducer = (
         ...state,
         user: payload,
       };
-    case Actions.AuthActions.LOGOUT.SUCCESS:
+    case Actions.AuthActions.LOGOUT:
       return {
         ...state,
         user: {},
+      };
+    case Actions.AuthActions.GET_BALANCE:
+      return {
+        ...state,
+        user: { ...state.user, balance: payload },
       };
     default:
       return state;
