@@ -45,7 +45,7 @@ const AuthReducer = (
     case Actions.AuthActions.LOGOUT:
       return {
         ...state,
-        user: {},
+        user: initialState.user,
       };
     case Actions.AuthActions.GET_BALANCE:
       return {

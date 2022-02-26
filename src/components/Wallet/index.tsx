@@ -37,9 +37,9 @@ export default function ConnectWallet() {
   );
 
   const handleLogout = () => {
+    setLogoutModal(false);
     logout();
     storeLogout();
-    setLogoutModal(false);
   };
 
   const closeConnectModal = (provider?: ProviderTypes) => {
@@ -91,7 +91,7 @@ export default function ConnectWallet() {
         balanceToRedux("0");
       }
     };
-    if (userData.accounts.length) {
+    if (userData?.accounts?.length) {
       getBalances();
     }
   }, [userData.accounts, Moralis, isAuthenticated, balanceToRedux]);
@@ -107,12 +107,12 @@ export default function ConnectWallet() {
       ) : (
         <Button
           id="connect"
-          clxºsName="d-none d-lg-block"
+          className="d-none d-lg-block"
           type="button"
           color="default"
           onClick={handleWalletConnect}
         >
-          "CONNECT"
+          CONNECT
         </Button>
       )}
       <ConectWalletModal isOpen={connectModal} onClose={closeConnectModal} />

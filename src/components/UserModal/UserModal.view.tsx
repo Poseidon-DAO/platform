@@ -1,6 +1,6 @@
-import CustomModal from "../CustomModal";
+import CustomModal from "../UI_KIT/CustomModal";
 import styled from "styled-components";
-import AvatarDisplay from "../Avatar";
+import AvatarDisplay from "../UI_KIT/Avatar";
 import { Badge } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/reducers";
@@ -27,7 +27,7 @@ export default function UserModal({
   );
 
   const copyAddress = () => {
-    navigator.clipboard.writeText(user.accounts[0]);
+    navigator.clipboard.writeText(user?.accounts[0]);
     addToast({ text: "Address copied to clipboard!" });
   };
 
@@ -39,7 +39,7 @@ export default function UserModal({
       <Content>
         <div>
           <header>Address:</header>
-          <p>{user.accounts[0]}</p>
+          <p>{user?.accounts[0]}</p>
           <Badge
             color="info"
             style={{ cursor: "pointer" }}
@@ -48,7 +48,7 @@ export default function UserModal({
             Copy Address
           </Badge>
           <header>Balance:</header>
-          <p>{user.balance} ETH</p>
+          <p>{user?.balance} ETH</p>
         </div>
         <LogoutContainer>
           <Badge
@@ -62,16 +62,14 @@ export default function UserModal({
       </Content>
     </Container>
   );
-  return (
-    <>
-      <CustomModal
-        header="Account"
-        body={userBody}
-        isOpen={isOpen}
-        onClose={onClose}
-      />
-    </>
-  );
+  return user?.accounts?.length ? (
+    <CustomModal
+      header="Account"
+      body={userBody}
+      isOpen={isOpen}
+      onClose={onClose}
+    />
+  ) : null;
 }
 
 const Container = styled.div`

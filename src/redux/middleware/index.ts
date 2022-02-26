@@ -1,4 +1,4 @@
-import { all, call, takeEvery } from "redux-saga/effects";
+import { all, takeEvery } from "redux-saga/effects";
 // import Auth from "./auth.middleware";
 import { IReduxAction } from "types";
 

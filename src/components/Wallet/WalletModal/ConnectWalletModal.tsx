@@ -1,10 +1,9 @@
-import { Button } from "reactstrap";
 import metamaskIcon from "assets/img/walletProviders/metamask.png";
 import walletConnectIcon from "assets/img/walletProviders/walletConnect.png";
 import Provider from "./Provider";
 import { ButtonTypes, ProviderTypes } from "types";
-import CustomModal from "components/CustomModal";
-import CustomButton from "components/CustomButton";
+import CustomModal from "components/UI_KIT/CustomModal";
+import CustomButton from "components/UI_KIT/CustomButton";
 
 interface WalletProvidersModalProps {
   isOpen: boolean;

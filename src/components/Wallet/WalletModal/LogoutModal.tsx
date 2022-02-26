@@ -1,5 +1,5 @@
-import CustomButton from "components/CustomButton";
-import CustomModal from "components/CustomModal";
+import CustomButton from "components/UI_KIT/CustomButton";
+import CustomModal from "components/UI_KIT/CustomModal";
 import { ButtonTypes } from "types";
 
 interface LogoutModalProps {
