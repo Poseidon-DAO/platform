@@ -49,7 +49,7 @@ export default function UserModal({
             Copy Address
           </Badge>
           <header>Balance:</header>
-          <p>{roundBalance(user?.balance)} ETH</p>
+          <p>{roundBalance(user?.balance, 6)} ETH</p>
         </div>
         <LogoutContainer>
           <Badge

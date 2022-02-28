@@ -6,7 +6,6 @@ import ConectWalletModal from "./WalletModal/ConnectWalletModal";
 import { ProviderTypes } from "types";
 import Actions from "redux/actions";
 import { RootState } from "redux/reducers";
-import LogoutModal from "./WalletModal/LogoutModal";
 import WalletInfo from "./WalletInfo";
 import UserModal from "../UserModal";
 
@@ -14,7 +13,6 @@ export default function ConnectWallet() {
   const dispatch = useDispatch();
 
   const [connectModal, setConnectModal] = useState(false);
-  const [logoutModal, setLogoutModal] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const { isAuthenticated, authenticate, logout, account, user, Moralis } =
     useMoralis();
@@ -37,7 +35,7 @@ export default function ConnectWallet() {
   );
 
   const handleLogout = () => {
-    setLogoutModal(false);
+    setShowUserModal(false);
     logout();
     storeLogout();
   };
@@ -54,15 +52,6 @@ export default function ConnectWallet() {
 
   const handleWalletConnect = () => {
     setConnectModal(true);
-  };
-
-  const closeLogoutModal = () => {
-    setLogoutModal(false);
-  };
-
-  const openLogoutModal = () => {
-    setShowUserModal(false);
-    setLogoutModal(true);
   };
 
   const handleCloseUserModal = () => {
@@ -119,13 +108,13 @@ export default function ConnectWallet() {
         </Button>
       )}
       <ConectWalletModal isOpen={connectModal} onClose={closeConnectModal} />
-      <LogoutModal
+      {/* <LogoutModal
         onLogout={handleLogout}
         isOpen={logoutModal}
         onClose={closeLogoutModal}
-      />
+      /> */}
       <UserModal
-        onLogout={openLogoutModal}
+        onLogout={handleLogout}
         isOpen={showUserModal}
         onClose={handleCloseUserModal}
       />

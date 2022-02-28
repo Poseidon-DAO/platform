@@ -16,7 +16,7 @@ export default function WalletInfo({
     <Container onClick={onClick}>
       {balance && (
         <LeftContainer>
-          <p>{roundBalance(balance)} ETH</p>
+          <p>{roundBalance(balance, 4)} ETH</p>
         </LeftContainer>
       )}
       <RightContainer address={address}>
