@@ -14,11 +14,9 @@ export default function WalletInfo({
 }: WalletInfoProps) {
   return (
     <Container onClick={onClick}>
-      {balance && (
-        <LeftContainer>
-          <p>{roundBalance(balance, 4)} ETH</p>
-        </LeftContainer>
-      )}
+      <LeftContainer>
+        <p>{balance ? roundBalance(balance, 4) : "0.00"} ETH</p>
+      </LeftContainer>
       <RightContainer address={address}>
         <p style={{ width: "fit-content" }}>
           {address?.slice(0, 8) + "..." + address?.slice(-8)}

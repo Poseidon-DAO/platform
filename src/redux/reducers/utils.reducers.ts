@@ -2,7 +2,7 @@ import Actions from "../actions";
 import { ApiReducerState, apiReducerInitialState } from "./reducerUtils";
 import { IReduxAction, ToastTypes } from "types";
 
-export interface IUtilsReducer extends ApiReducerState {
+export interface IUtilsState extends ApiReducerState {
   toast: {
     text: string;
     type: ToastTypes;
@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const GlobalReducers = (
-  state: IUtilsReducer = initialState,
+  state: IUtilsState = initialState,
   { type, payload }: IReduxAction
 ) => {
   switch (type) {

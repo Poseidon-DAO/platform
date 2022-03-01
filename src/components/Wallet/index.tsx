@@ -8,16 +8,15 @@ import Actions from "redux/actions";
 import { RootState } from "redux/reducers";
 import WalletInfo from "./WalletInfo";
 import UserModal from "../UserModal";
-
 export default function ConnectWallet() {
   const dispatch = useDispatch();
 
   const [connectModal, setConnectModal] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
-  const { isAuthenticated, authenticate, logout, account, user, Moralis } =
-    useMoralis();
+  const { isAuthenticated, authenticate, logout, user } = useMoralis();
 
   const userData = useSelector((state: RootState) => state.auth.user);
+  const wallet = useSelector((state: RootState) => state.wallet.wallet);
 
   const login = useCallback(
     (payload: any) => dispatch(Actions.AuthActions.Login.success(payload)),
@@ -26,11 +25,6 @@ export default function ConnectWallet() {
 
   const storeLogout = useCallback(
     () => dispatch(Actions.AuthActions.Logout()),
-    [dispatch]
-  );
-
-  const balanceToRedux = useCallback(
-    (payload: string) => dispatch(Actions.AuthActions.Balance(payload)),
     [dispatch]
   );
 
@@ -67,33 +61,14 @@ export default function ConnectWallet() {
     if (isAuthenticated) {
       login(JSON.parse(JSON.stringify(user)));
     }
-  }, [isAuthenticated, login, user, account]);
-
-  // Fetch address balance on address change
-  useEffect(() => {
-    const getBalances = async () => {
-      try {
-        const balances = await Moralis.Web3API.account.getNativeBalance({
-          address: userData.accounts[0],
-          //@ts-ignore
-          chain: `${userData.accounts[0].slice(0, 3)}`,
-        });
-        balanceToRedux(Moralis.Units.FromWei(balances.balance));
-      } catch (e) {
-        balanceToRedux("0");
-      }
-    };
-    if (userData?.accounts?.length) {
-      getBalances();
-    }
-  }, [userData.accounts, Moralis, isAuthenticated, balanceToRedux]);
+  }, [isAuthenticated, login, user]);
 
   return (
     <>
       {isAuthenticated && userData.accounts ? (
         <WalletInfo
           address={userData.accounts[0]}
-          balance={userData.balance}
+          balance={wallet.balance}
           onClick={handleOpenUserModal}
         />
       ) : (
@@ -108,11 +83,6 @@ export default function ConnectWallet() {
         </Button>
       )}
       <ConectWalletModal isOpen={connectModal} onClose={closeConnectModal} />
-      {/* <LogoutModal
-        onLogout={handleLogout}
-        isOpen={logoutModal}
-        onClose={closeLogoutModal}
-      /> */}
       <UserModal
         onLogout={handleLogout}
         isOpen={showUserModal}

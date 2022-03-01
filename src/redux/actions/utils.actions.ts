@@ -1,10 +1,10 @@
 import { ToastTypes } from "types";
 
-export const NEW_TOAST = "NEW_TOAST";
-export const CLEAR_TOAST = "CLEAR_TOAST";
+export const NEW_TOAST = "@utils/new_toast";
+export const CLEAR_TOAST = "@utils/clear_toast";
 
-export const addToast = (payload: { text: string; type?: ToastTypes }) => ({
+export const AddToast = (payload: { text: string; type?: ToastTypes }) => ({
   type: NEW_TOAST,
   payload,
 });
-export const clearToast = () => ({ type: CLEAR_TOAST });
+export const ClearToast = () => ({ type: CLEAR_TOAST });

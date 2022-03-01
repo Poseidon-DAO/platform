@@ -23,7 +23,7 @@ export default function UserModal({
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
   const addToast = useCallback(
-    (payload) => dispatch(Actions.UtilsActions.addToast(payload)),
+    (payload) => dispatch(Actions.UtilsActions.AddToast(payload)),
     [dispatch]
   );
 

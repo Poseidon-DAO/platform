@@ -20,6 +20,14 @@ export enum ToastTypes {
   info = "info",
 }
 
+export const NetworkTypes = {
+  "0x1": "Mainnet",
+  "0x3": "Ropsten",
+  "0x4": "Rinkeby",
+  "0x2a": "Kovan",
+  "0x5": "Goerli",
+};
+
 export interface IUser {
   username: string;
   authData: any;
@@ -30,6 +38,12 @@ export interface IUser {
   sessionToken: string;
   objectId: string;
   balance: any;
+}
+export interface IWallet {
+  name: string;
+  balance: string;
+  address: string;
+  id: string;
 }
 
 //Redux types
