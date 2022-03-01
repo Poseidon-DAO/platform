@@ -45,14 +45,8 @@ export default function App() {
         setChainId(chainID);
         if (chainID !== "0x1") {
           newToast({
-            text: "Please switch to Mainnet to use our platform",
+            text: "Please switch to a valid chain to use our platform",
             type: "warning",
-          });
-        } else {
-          newToast({
-            //@ts-ignore
-            text: "Active chain is " + NetworkTypes[chainID],
-            type: "success",
           });
         }
       }
