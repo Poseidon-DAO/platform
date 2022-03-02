@@ -34,9 +34,12 @@ export default function App() {
     () => dispatch(Actions.AuthActions.Logout()),
     [dispatch]
   );
+  const currentChain = useSelector(
+    (state: RootState) => state.wallet.wallet.name
+  );
   const userData = useSelector((state: RootState) => state.auth.user);
 
-  //Initialize web3 functions
+  //Initialize web3 env
   const setWeb3Env = () => {
     getNetwork();
     monitorNetwork();
@@ -46,16 +49,9 @@ export default function App() {
   //Toast depending on chain being used
   const getNetwork = async () => {
     try {
-      await Moralis.enableWeb3();
       const chainID = await Moralis.getChainId();
       if (chainID) {
         setChainId(chainID);
-        if (chainID !== "0x1") {
-          newToast({
-            text: "Please switch to a valid chain to use our platform",
-            type: "warning",
-          });
-        }
       }
     } catch (e) {
       console.log(e);
@@ -65,7 +61,7 @@ export default function App() {
   //Reload on chain change
   const monitorNetwork = () => {
     Moralis.onChainChanged(function () {
-      window.location.reload();
+      getNetwork();
     });
   };
 
@@ -74,12 +70,27 @@ export default function App() {
     Moralis.onAccountChanged(function () {
       logout();
       storeLogout();
-      window.location.reload();
     });
   };
 
+  //Update stuff once web3 is enabled.
+  const onWeb3Enabled = () => {
+    Moralis.onWeb3Enabled(function () {
+      setWeb3Env();
+    });
+  };
+
+  // Initialize web3 through Moralis on load
   useEffect(() => {
-    if (isAuthenticated) setWeb3Env();
+    const enableWeb3 = async () => {
+      await Moralis.enableWeb3();
+    };
+    enableWeb3();
+  }, []);
+
+  //If user authenticates, we set up the environment
+  useEffect(() => {
+    if (isAuthenticated) onWeb3Enabled();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
@@ -96,6 +107,16 @@ export default function App() {
       });
     }
   }, [chainId, updateChain, userData.balance, account]);
+
+  //Trigger toast on chain id change
+  useEffect(() => {
+    if (chainId.length && chainId !== "0x1") {
+      newToast({
+        text: "Please switch to Mainnet",
+        type: "warning",
+      });
+    }
+  }, [currentChain]);
 
   // Fetch address balance and NFTa on address change
   useEffect(() => {
@@ -124,6 +145,7 @@ export default function App() {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, isAuthenticated, updateBalance, chainId]);
 
+  // Display toasts set in Redux
   useEffect(() => {
     if (toastData.text.length) {
       toast[toastData.type](toastData.text, {
