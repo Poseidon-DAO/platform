@@ -12,7 +12,7 @@ import Actions from "redux/actions";
 export default function App() {
   const toastData = useSelector((state: RootState) => state.utils.toast);
   const [chainId, setChainId] = useState<string>("");
-  const { Moralis, isAuthenticated, account } = useMoralis();
+  const { Moralis, isAuthenticated, account, logout } = useMoralis();
   const dispatch = useDispatch();
   const newToast = useCallback(
     (payload) => dispatch(Actions.UtilsActions.AddToast(payload)),
@@ -30,13 +30,20 @@ export default function App() {
     (payload: any) => dispatch(Actions.WalletActions.UpdateNfts(payload)),
     [dispatch]
   );
+  const storeLogout = useCallback(
+    () => dispatch(Actions.AuthActions.Logout()),
+    [dispatch]
+  );
   const userData = useSelector((state: RootState) => state.auth.user);
 
+  //Initialize web3 functions
   const setWeb3Env = () => {
     getNetwork();
     monitorNetwork();
+    monitorDisconnection();
   };
 
+  //Toast depending on chain being used
   const getNetwork = async () => {
     try {
       await Moralis.enableWeb3();
@@ -55,14 +62,25 @@ export default function App() {
     }
   };
 
+  //Reload on chain change
   const monitorNetwork = () => {
     Moralis.onChainChanged(function () {
       window.location.reload();
     });
   };
 
+  //Check if user disconnects from inside Metamask
+  const monitorDisconnection = () => {
+    Moralis.onAccountChanged(function () {
+      logout();
+      storeLogout();
+      window.location.reload();
+    });
+  };
+
   useEffect(() => {
     if (isAuthenticated) setWeb3Env();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   //Update chain of change in wallet
@@ -79,7 +97,7 @@ export default function App() {
     }
   }, [chainId, updateChain, userData.balance, account]);
 
-  // Fetch address balance on address change
+  // Fetch address balance and NFTa on address change
   useEffect(() => {
     const getBalancesAndNfts = async () => {
       if (account) {
@@ -103,7 +121,7 @@ export default function App() {
     };
     if (account && chainId && isAuthenticated) {
       getBalancesAndNfts();
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, isAuthenticated, updateBalance, chainId]);
 
   useEffect(() => {
@@ -111,11 +129,10 @@ export default function App() {
       toast[toastData.type](toastData.text, {
         position: "bottom-right",
         autoClose: 3000,
-        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
+        hideProgressBar: true,
       });
     }
   }, [toastData]);
