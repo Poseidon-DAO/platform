@@ -34,9 +34,7 @@ export default function App() {
     () => dispatch(Actions.AuthActions.Logout()),
     [dispatch]
   );
-  const currentChain = useSelector(
-    (state: RootState) => state.wallet.wallet.name
-  );
+
   const userData = useSelector((state: RootState) => state.auth.user);
 
   //Initialize web3 env
@@ -116,7 +114,7 @@ export default function App() {
         type: "warning",
       });
     }
-  }, [currentChain]);
+  }, [chainId]);
 
   // Fetch address balance and NFTa on address change
   useEffect(() => {
