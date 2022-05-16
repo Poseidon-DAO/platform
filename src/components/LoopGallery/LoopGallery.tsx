@@ -14,7 +14,7 @@ const LoopGallery = (props: any) => {
       autoplaySpeed: props.autoplaySpeed || 500,
       infinite: true,
       centerPadding: 0,
-      rtl: props.rtl !== undefined ? props.autoplay : false,
+      rtl: props.rtl !== undefined ? props.rtl : false,
       speed: props.speed || 500,
       slidesToShow: 6,
       slidesToScroll: 1,

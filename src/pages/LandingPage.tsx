@@ -4,6 +4,12 @@ import { SocialIcon } from "react-social-icons";
 import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import LoopGallery from "components/LoopGallery/LoopGallery";
 import { PageBackground } from "components/PageBackground";
+import "assets/demo/demo.css";
+import "assets/scss/blk-design-system-react.scss";
+import "assets/css/nucleo-icons.css";
+import "./LandingPage.css";
+
+const skew = 8;
 
 export const LandingPage = () => {
   useEffect(() => {
@@ -24,10 +30,10 @@ export const LandingPage = () => {
               </h1>
               <p className="text-white mb-3">
                 Poseidon DAO brings NFTs to the next step, enabling their
-                  evolution. The DAO is built on top of the knowledge of a huge
-                  collective of artists and collectors, in order to create a
-                  decentralized entity that can lead NFTs and crypto art to
-                  another level.
+                evolution. The DAO is built on top of the knowledge of a huge
+                collective of artists and collectors, in order to create a
+                decentralized entity that can lead NFTs and crypto art to
+                another level.
               </p>
               <div className="btn-wrapper">
                 <div className="button-container">
@@ -64,7 +70,10 @@ export const LandingPage = () => {
             </Col>
           </Row>
         </PageBackground>
-        <Row style={{ marginBottom: "1rem" }}>
+        <Row
+          style={{ transform: `skew(-${skew}deg, ${skew}deg)` }}
+          className="gallery-row"
+        >
           <LoopGallery>
             {[
               "-x-.jpg",
@@ -89,7 +98,10 @@ export const LandingPage = () => {
             ))}
           </LoopGallery>
         </Row>
-        <Row style={{ marginBottom: "1rem" }}>
+        <Row
+          style={{ transform: `skew(${skew}deg, -${skew}deg)` }}
+          className="gallery-row"
+        >
           <LoopGallery rtl={true} autoplaySpeed={700} speed={700}>
             {[
               "clone2.png",
@@ -114,7 +126,10 @@ export const LandingPage = () => {
             ))}
           </LoopGallery>
         </Row>
-        <Row style={{ marginBottom: "1rem" }}>
+        <Row
+          style={{ transform: `skew(-${skew}deg, ${skew}deg)` }}
+          className="gallery-row"
+        >
           <LoopGallery>
             {[
               "in-bocca-al-lupo.jpg",
@@ -236,10 +251,7 @@ export const LandingPage = () => {
                 </Col>
                 <Col md="6">
                   <div className="pl-md-5">
-                    <h1>
-                      Large <br />
-                      Treasury
-                    </h1>
+                    <h1>DAO Collection</h1>
                     <p>
                       The DAO is built on top of a massive treasury made up of
                       historical NFTs, 1-of-1 and collectibles.
@@ -284,6 +296,41 @@ export const LandingPage = () => {
               </Row>
             </Container>
           </section>
+        </section>
+        <section className="section section-lg derivatives-section">
+          <Row className="row-grid justify-content-between">
+            <Col className="mt-lg-5" md="5">
+              <div className="pl-md-5">
+                <h1>Derivatives Collection</h1>
+                <p>
+                  The purpose of the derivatives collection is to combine
+                  different artistic styles with unique pieces of high
+                  commercial value but little artistic content, valuing both the
+                  starting work thanks to the collaboration of excellent artists
+                  as well as the DAO itself and future token holders. Niro
+                  Perrone, Gio' Roman and Bert One are just some of the artists
+                  the DAO partnered with for derivatives project.
+                </p>
+                <br />
+                <p>
+                  To make collectors and art lovers of all budgets participate
+                  as much as possible in the project, to all those who make bids
+                  during the auction, for each bid, they will be given in
+                  airdrop the governance tokens of the DAO.
+                </p>
+                <br />
+                <a
+                  className="font-weight-bold text-info mt-5"
+                  href="https://foundation.app/collection/posder"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  On Foundation
+                  <i className="tim-icons icon-minimal-right text-info" />
+                </a>
+              </div>
+            </Col>
+          </Row>
         </section>
         <Footer />
       </div>

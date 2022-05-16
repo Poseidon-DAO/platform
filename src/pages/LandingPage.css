@@ -1,0 +1,10 @@
+.gallery-row {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.derivatives-section {
+  background-image: url("../assets/img/derivatives/twitter-teaser.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
